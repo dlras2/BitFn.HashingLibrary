@@ -7,9 +7,9 @@ namespace BitFn.HashingLibrary.Algorithms
 {
 	/// <summary>
 	///     A class for thinly wrapping implementations of <see cref="System.Security.Cryptography.HashAlgorithm" /> for use as
-	///     <see cref="IAlgorithm" />.
+	///     <see cref="IHashAlgorithm" />.
 	/// </summary>
-	public sealed class CryptographyWrapper : IAlgorithm<byte[]>, IDisposable
+	public sealed class CryptographyWrapper : IHashAlgorithm<byte[]>, IDisposable
 	{
 		/// <summary>
 		///     Gets the size, in bits, of the computed hash code. Equal to the hash size of the underlying
@@ -30,7 +30,7 @@ namespace BitFn.HashingLibrary.Algorithms
 			_underlyingAlgorithm.Dispose();
 		}
 
-		byte[] IAlgorithm.ComputeHash(byte[] values)
+		byte[] IHashAlgorithm.ComputeHash(byte[] values)
 		{
 			return ComputeHash(values);
 		}

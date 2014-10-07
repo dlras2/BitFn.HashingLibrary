@@ -119,11 +119,11 @@
   <ItemGroup>
     <Compile Include="Algorithms\MurmurHash3x128.cs" />
     <Compile Include="Algorithms\CryptographyWrapper.cs" />
-    <Compile Include="IAlgorithmT.cs" />
-    <Compile Include="SeededHashProvider.cs" />
-    <Compile Include="IAlgorithm.cs" />
-    <Compile Include="ISeededHashProvider.cs" />
-    <Compile Include="IHashProvider.cs" />
+    <Compile Include="IHashAlgorithmT.cs" />
+    <Compile Include="SeededHashingService.cs" />
+    <Compile Include="IHashAlgorithm.cs" />
+    <Compile Include="ISeededHashingService.cs" />
+    <Compile Include="IHashingService.cs" />
     <Compile Include="Algorithms\ReSharper.cs" />
     <Compile Include="Algorithms\MurmurHash2.cs" />
     <Compile Include="Algorithms\MurmurHash3.cs" />

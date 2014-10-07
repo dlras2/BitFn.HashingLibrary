@@ -16,7 +16,7 @@ namespace BitFn.HashingLibrary.Tests.Algorithms.ReSharper
 			var algorithm = new HashingLibrary.Algorithms.ReSharper();
 
 			// Act
-			var actual = ((IAlgorithm)algorithm).HashSize;
+			var actual = ((IHashAlgorithm)algorithm).HashSize;
 
 			// Assert
 			Assert.AreEqual(expected, actual);

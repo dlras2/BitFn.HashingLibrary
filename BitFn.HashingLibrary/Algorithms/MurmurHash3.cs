@@ -9,9 +9,9 @@ namespace BitFn.HashingLibrary.Algorithms
 	/// <remarks>
 	///     https://code.google.com/p/smhasher/
 	/// </remarks>
-	public sealed class MurmurHash3 : IAlgorithm<int>
+	public sealed class MurmurHash3 : IHashAlgorithm<int>
 	{
-		int IAlgorithm.HashSize
+		int IHashAlgorithm.HashSize
 		{
 			get { return sizeof(int) * 8; }
 		}
@@ -84,7 +84,7 @@ namespace BitFn.HashingLibrary.Algorithms
 			}
 		}
 
-		byte[] IAlgorithm.ComputeHash(byte[] values)
+		byte[] IHashAlgorithm.ComputeHash(byte[] values)
 		{
 			var result = ComputeHash(values);
 			return BitConverter.GetBytes(result);

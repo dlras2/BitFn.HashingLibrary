@@ -10,10 +10,10 @@ namespace BitFn.HashingLibrary.Algorithms
 	///     https://code.google.com/p/smhasher/
 	/// </remarks>
 	// ReSharper disable InconsistentNaming
-	public sealed class MurmurHash3x128 : IAlgorithm<int[]>, IAlgorithm<Tuple<int, int, int, int>>
+	public sealed class MurmurHash3x128 : IHashAlgorithm<int[]>, IHashAlgorithm<Tuple<int, int, int, int>>
 		// ReSharper restore InconsistentNaming
 	{
-		int IAlgorithm.HashSize
+		int IHashAlgorithm.HashSize
 		{
 			get { return sizeof(int) * ResultLength * 8; }
 		}
@@ -162,7 +162,7 @@ namespace BitFn.HashingLibrary.Algorithms
 			}
 		}
 
-		byte[] IAlgorithm.ComputeHash(byte[] values)
+		byte[] IHashAlgorithm.ComputeHash(byte[] values)
 		{
 			var result = ComputeHash(values);
 			var bytes = new byte[result.Length * sizeof(int)];
@@ -170,7 +170,7 @@ namespace BitFn.HashingLibrary.Algorithms
 			return bytes;
 		}
 
-		Tuple<int, int, int, int> IAlgorithm<Tuple<int, int, int, int>>.ComputeHash(byte[] values)
+		Tuple<int, int, int, int> IHashAlgorithm<Tuple<int, int, int, int>>.ComputeHash(byte[] values)
 		{
 			var result = ComputeHash(values);
 			return new Tuple<int, int, int, int>(result[0], result[1], result[2], result[3]);

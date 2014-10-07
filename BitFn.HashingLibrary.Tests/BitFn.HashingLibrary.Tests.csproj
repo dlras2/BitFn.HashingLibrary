@@ -114,11 +114,11 @@
     <Compile Include="Algorithms\CryptographyWrapper\MD5\ComputeHash.cs" />
     <Compile Include="Algorithms\CryptographyWrapper\SHA256\ComputeHash.cs" />
     <Compile Include="Algorithms\ReSharper\HashSize.cs" />
-    <Compile Include="SeededHashProvider\ComputeHash.cs" />
+    <Compile Include="SeededHashingService\ComputeHash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SeededHashProvider\Constructor.cs" />
-    <Compile Include="SeededHashProvider\HashSize.cs" />
-    <Compile Include="SeededHashProvider\SetSeed.cs" />
+    <Compile Include="SeededHashingService\Constructor.cs" />
+    <Compile Include="SeededHashingService\HashSize.cs" />
+    <Compile Include="SeededHashingService\SetSeed.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BitFn.HashingLibrary\BitFn.HashingLibrary.csproj">

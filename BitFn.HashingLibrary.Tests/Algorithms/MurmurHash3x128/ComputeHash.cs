@@ -11,7 +11,7 @@ namespace BitFn.HashingLibrary.Tests.Algorithms.MurmurHash3x128
 	{
 		[TestMethod]
 		[CategorizeByConvention]
-		public void WhenCastAsIAlgorithmInts_ShouldMatchByteResult()
+		public void WhenCastAsIHashAlgorithmInts_ShouldMatchByteResult()
 		{
 			// Arrange
 			var fixture = new Fixture();
@@ -23,7 +23,7 @@ namespace BitFn.HashingLibrary.Tests.Algorithms.MurmurHash3x128
 			Buffer.BlockCopy(expected, 0, expectedBytes, 0, expectedBytes.Length);
 
 			// Act
-			var actual = ((IAlgorithm)algorithm).ComputeHash(values);
+			var actual = ((IHashAlgorithm)algorithm).ComputeHash(values);
 
 			// Assert
 			CollectionAssert.AreEqual(expectedBytes, actual);
@@ -31,7 +31,7 @@ namespace BitFn.HashingLibrary.Tests.Algorithms.MurmurHash3x128
 
 		[TestMethod]
 		[CategorizeByConvention]
-		public void WhenCastAsIAlgorithmTuple_ShouldMatchIntsResult()
+		public void WhenCastAsIHashAlgorithmTuple_ShouldMatchIntsResult()
 		{
 			// Arrange
 			var fixture = new Fixture();
@@ -41,7 +41,7 @@ namespace BitFn.HashingLibrary.Tests.Algorithms.MurmurHash3x128
 			var expected = algorithm.ComputeHash(values);
 
 			// Act
-			var actual = ((IAlgorithm<Tuple<int, int, int, int>>)algorithm).ComputeHash(values);
+			var actual = ((IHashAlgorithm<Tuple<int, int, int, int>>)algorithm).ComputeHash(values);
 
 			// Assert
 			Assert.AreEqual(expected[0], actual.Item1);

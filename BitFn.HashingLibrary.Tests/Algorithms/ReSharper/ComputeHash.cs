@@ -11,7 +11,7 @@ namespace BitFn.HashingLibrary.Tests.Algorithms.ReSharper
 	{
 		[TestMethod]
 		[CategorizeByConvention]
-		public void WhenCastAsIAlgorithmInt_ShouldMatchByteResult()
+		public void WhenCastAsIHashAlgorithmInt_ShouldMatchByteResult()
 		{
 			// Arrange
 			var fixture = new Fixture();
@@ -22,7 +22,7 @@ namespace BitFn.HashingLibrary.Tests.Algorithms.ReSharper
 			var expectedBytes = BitConverter.GetBytes(expected);
 
 			// Act
-			var actual = ((IAlgorithm)algorithm).ComputeHash(values);
+			var actual = ((IHashAlgorithm)algorithm).ComputeHash(values);
 
 			// Assert
 			CollectionAssert.AreEqual(expectedBytes, actual);

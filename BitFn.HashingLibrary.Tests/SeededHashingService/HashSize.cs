@@ -3,7 +3,7 @@ using Moq;
 using Ploeh.AutoFixture;
 using Run00.MsTest;
 
-namespace BitFn.HashingLibrary.Tests.SeededHashProvider
+namespace BitFn.HashingLibrary.Tests.SeededHashingService
 {
 	[TestClass]
 	[CategorizeByConventionClass(typeof(HashSize))]
@@ -17,12 +17,12 @@ namespace BitFn.HashingLibrary.Tests.SeededHashProvider
 			var fixture = new Fixture();
 			var expected = fixture.Create<int>();
 
-			var algorithm = new Mock<IAlgorithm<int>>(MockBehavior.Strict);
+			var algorithm = new Mock<IHashAlgorithm<int>>(MockBehavior.Strict);
 			algorithm.Setup(m => m.HashSize).Returns(expected);
-			var provider = new SeededHashProvider<int>(algorithm.Object);
+			var provider = new SeededHashingService<int>(algorithm.Object);
 
 			// Act
-			var actual = ((IAlgorithm)provider).HashSize;
+			var actual = ((IHashAlgorithm)provider).HashSize;
 
 			// Assert
 			Assert.AreEqual(expected, actual);

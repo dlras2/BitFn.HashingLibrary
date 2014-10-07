@@ -8,9 +8,9 @@ namespace BitFn.HashingLibrary.Algorithms
 	/// <remarks>
 	///     http://www.jetbrains.com/resharper/
 	/// </remarks>
-	public sealed class ReSharper : IAlgorithm<int>
+	public sealed class ReSharper : IHashAlgorithm<int>
 	{
-		int IAlgorithm.HashSize
+		int IHashAlgorithm.HashSize
 		{
 			get { return sizeof(int) * 8; }
 		}
@@ -37,7 +37,7 @@ namespace BitFn.HashingLibrary.Algorithms
 			}
 		}
 
-		byte[] IAlgorithm.ComputeHash(byte[] values)
+		byte[] IHashAlgorithm.ComputeHash(byte[] values)
 		{
 			var result = ComputeHash(values);
 			var bytes = BitConverter.GetBytes(result);

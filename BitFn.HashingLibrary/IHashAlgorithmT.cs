@@ -4,8 +4,8 @@ using System.Diagnostics.Contracts;
 
 namespace BitFn.HashingLibrary
 {
-	[ContractClass(typeof(AlgorithmContract<>))]
-	public interface IAlgorithm<out T> : IAlgorithm
+	[ContractClass(typeof(HashAlgorithmContract<>))]
+	public interface IHashAlgorithm<out T> : IHashAlgorithm
 	{
 		/// <summary>
 		///     Computes the hash value for the specified byte array.
@@ -17,20 +17,20 @@ namespace BitFn.HashingLibrary
 	}
 
 	[ExcludeFromCodeCoverage]
-	[ContractClassFor(typeof(IAlgorithm<>))]
-	internal abstract class AlgorithmContract<T> : IAlgorithm<T>
+	[ContractClassFor(typeof(IHashAlgorithm<>))]
+	internal abstract class HashAlgorithmContract<T> : IHashAlgorithm<T>
 	{
-		int IAlgorithm.HashSize
+		int IHashAlgorithm.HashSize
 		{
 			get { throw new NotImplementedException(); }
 		}
 
-		byte[] IAlgorithm.ComputeHash(byte[] values)
+		byte[] IHashAlgorithm.ComputeHash(byte[] values)
 		{
 			throw new NotImplementedException();
 		}
 
-		T IAlgorithm<T>.ComputeHash(byte[] values)
+		T IHashAlgorithm<T>.ComputeHash(byte[] values)
 		{
 			Contract.Requires(values != null);
 			Contract.Ensures(Contract.Result<T>() != null);

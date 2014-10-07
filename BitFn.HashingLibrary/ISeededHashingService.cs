@@ -5,8 +5,8 @@ using System.Diagnostics.Contracts;
 
 namespace BitFn.HashingLibrary
 {
-	[ContractClass(typeof(SeededHashProviderContract<>))]
-	public interface ISeededHashProvider<out T> : IHashProvider<T>
+	[ContractClass(typeof(SeededHashingServiceContract<>))]
+	public interface ISeededHashingService<out T> : IHashingService<T>
 	{
 		/// <summary>
 		///     Gets the seed value to be prepended before computing each hash.
@@ -33,12 +33,12 @@ namespace BitFn.HashingLibrary
 	}
 
 	[ExcludeFromCodeCoverage]
-	[ContractClassFor(typeof(ISeededHashProvider<>))]
-	internal abstract class SeededHashProviderContract<T> : ISeededHashProvider<T>
+	[ContractClassFor(typeof(ISeededHashingService<>))]
+	internal abstract class SeededHashingServiceContract<T> : ISeededHashingService<T>
 	{
 		public abstract int HashSize { get; }
 
-		ReadOnlyCollection<byte> ISeededHashProvider<T>.Seed
+		ReadOnlyCollection<byte> ISeededHashingService<T>.Seed
 		{
 			get
 			{
@@ -48,41 +48,41 @@ namespace BitFn.HashingLibrary
 			}
 		}
 
-		byte[] IAlgorithm.ComputeHash(byte[] values)
+		byte[] IHashAlgorithm.ComputeHash(byte[] values)
 		{
 			throw new NotImplementedException();
 		}
 
-		T IAlgorithm<T>.ComputeHash(byte[] values)
+		T IHashAlgorithm<T>.ComputeHash(byte[] values)
 		{
 			throw new NotImplementedException();
 		}
 
-		T IHashProvider<T>.ComputeHash(params int[] values)
+		T IHashingService<T>.ComputeHash(params int[] values)
 		{
 			throw new NotImplementedException();
 		}
 
-		T IHashProvider<T>.ComputeHash(params string[] values)
+		T IHashingService<T>.ComputeHash(params string[] values)
 		{
 			throw new NotImplementedException();
 		}
 
-		void ISeededHashProvider<T>.SetSeed(byte[] seed)
-		{
-			Contract.Requires(seed != null);
-
-			throw new NotImplementedException();
-		}
-
-		void ISeededHashProvider<T>.SetSeed(params int[] seed)
+		void ISeededHashingService<T>.SetSeed(byte[] seed)
 		{
 			Contract.Requires(seed != null);
 
 			throw new NotImplementedException();
 		}
 
-		void ISeededHashProvider<T>.SetSeed(params string[] seed)
+		void ISeededHashingService<T>.SetSeed(params int[] seed)
+		{
+			Contract.Requires(seed != null);
+
+			throw new NotImplementedException();
+		}
+
+		void ISeededHashingService<T>.SetSeed(params string[] seed)
 		{
 			Contract.Requires(seed != null);
 

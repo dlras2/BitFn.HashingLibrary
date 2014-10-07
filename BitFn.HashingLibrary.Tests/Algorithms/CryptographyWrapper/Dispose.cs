@@ -19,7 +19,7 @@ namespace BitFn.HashingLibrary.Tests.Algorithms.CryptographyWrapper
 			var values = fixture.Create<byte[]>();
 			var expected = typeof(ObjectDisposedException);
 
-			// TODO: Mock HashProvider?
+			// TODO: Mock Crypto.HashAlgorithm?
 			var hashAlgorithm = Crypto.MD5.Create();
 			var algorithm = new HashingLibrary.Algorithms.CryptographyWrapper(hashAlgorithm);
 			algorithm.Dispose();

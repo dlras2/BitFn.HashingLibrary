@@ -11,18 +11,18 @@ namespace BitFn.HashingLibrary.Tests.Algorithms.CryptographyWrapper
 	{
 		[TestMethod]
 		[CategorizeByConvention]
-		public void WhenCastAsIAlgorithm_ShouldMatchGenericResult()
+		public void WhenCastAsIHashAlgorithm_ShouldMatchGenericResult()
 		{
 			// Arrange
 			var fixture = new Fixture();
 			var values = fixture.Create<byte[]>();
-			// TODO: Mock HashProvider?
+			// TODO: Mock Crypto.HashAlgorithm?
 			var algorithm = new HashingLibrary.Algorithms.CryptographyWrapper(Crypto.MD5.Create());
 
 			var expected = algorithm.ComputeHash(values);
 
 			// Act
-			var actual = ((IAlgorithm)algorithm).ComputeHash(values);
+			var actual = ((IHashAlgorithm)algorithm).ComputeHash(values);
 
 			// Assert
 			CollectionAssert.AreEqual(expected, actual);

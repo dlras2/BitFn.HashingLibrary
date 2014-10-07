@@ -16,7 +16,7 @@ namespace BitFn.HashingLibrary.Tests.Algorithms.MurmurHash3x128
 			var algorithm = new HashingLibrary.Algorithms.MurmurHash3x128();
 
 			// Act
-			var actual = ((IAlgorithm)algorithm).HashSize;
+			var actual = ((IHashAlgorithm)algorithm).HashSize;
 
 			// Assert
 			Assert.AreEqual(expected, actual);

@@ -5,7 +5,7 @@ using Moq;
 using Ploeh.AutoFixture;
 using Run00.MsTest;
 
-namespace BitFn.HashingLibrary.Tests.SeededHashProvider
+namespace BitFn.HashingLibrary.Tests.SeededHashingService
 {
 	[TestClass]
 	[CategorizeByConventionClass(typeof(ComputeHash))]
@@ -13,22 +13,22 @@ namespace BitFn.HashingLibrary.Tests.SeededHashProvider
 	{
 		[TestMethod]
 		[CategorizeByConvention]
-		public void WhenCastAsIAlgorithm_ShouldReturnFromAlgorithm()
+		public void WhenCastAsIHashAlgorithm_ShouldReturnFromAlgorithm()
 		{
 			// Arrange
 			var fixture = new Fixture();
 			var values = fixture.Create<byte[]>();
 			var expected = fixture.Create<byte[]>();
 
-			var algorithm = new Mock<IAlgorithm<int>>(MockBehavior.Strict);
-			algorithm.As<IAlgorithm>()
+			var algorithm = new Mock<IHashAlgorithm<int>>(MockBehavior.Strict);
+			algorithm.As<IHashAlgorithm>()
 				.Setup(m => m.ComputeHash(It.IsNotNull<byte[]>()))
 				.Returns(() => expected)
 				.Verifiable();
-			var provider = new SeededHashProvider<int>(algorithm.Object);
+			var provider = new SeededHashingService<int>(algorithm.Object);
 
 			// Act
-			var actual = ((IAlgorithm)provider).ComputeHash(values);
+			var actual = ((IHashAlgorithm)provider).ComputeHash(values);
 
 			// Assert
 			CollectionAssert.AreEqual(expected, actual);
@@ -47,11 +47,11 @@ namespace BitFn.HashingLibrary.Tests.SeededHashProvider
 			Contract.Assume(values != null);
 			var expected = seed.Length + values.Length;
 
-			var algorithm = new Mock<IAlgorithm<int>>(MockBehavior.Strict);
+			var algorithm = new Mock<IHashAlgorithm<int>>(MockBehavior.Strict);
 			algorithm.Setup(m => m.ComputeHash(It.Is<byte[]>(b => b != null && b.Length == expected)))
 				.Returns(() => default(int))
 				.Verifiable();
-			var provider = new SeededHashProvider<int>(algorithm.Object, seed);
+			var provider = new SeededHashingService<int>(algorithm.Object, seed);
 
 			// Act
 			var actual = provider.ComputeHash(values);
@@ -69,11 +69,11 @@ namespace BitFn.HashingLibrary.Tests.SeededHashProvider
 			var values = fixture.Create<byte[]>();
 			var expected = values.Length;
 
-			var algorithm = new Mock<IAlgorithm<int>>(MockBehavior.Strict);
+			var algorithm = new Mock<IHashAlgorithm<int>>(MockBehavior.Strict);
 			algorithm.Setup(m => m.ComputeHash(It.Is<byte[]>(b => b != null && b.Length == expected)))
 				.Returns(() => default(int))
 				.Verifiable();
-			var provider = new SeededHashProvider<int>(algorithm.Object);
+			var provider = new SeededHashingService<int>(algorithm.Object);
 
 			// Act
 			var actual = provider.ComputeHash(new byte[expected]);
@@ -91,11 +91,11 @@ namespace BitFn.HashingLibrary.Tests.SeededHashProvider
 			var values = fixture.Create<byte[]>();
 			var expected = fixture.Create<int>();
 
-			var algorithm = new Mock<IAlgorithm<int>>(MockBehavior.Strict);
+			var algorithm = new Mock<IHashAlgorithm<int>>(MockBehavior.Strict);
 			algorithm.Setup(m => m.ComputeHash(It.IsNotNull<byte[]>()))
 				.Returns(() => expected)
 				.Verifiable();
-			var provider = new SeededHashProvider<int>(algorithm.Object);
+			var provider = new SeededHashingService<int>(algorithm.Object);
 
 			// Act
 			var actual = provider.ComputeHash(values);
@@ -114,11 +114,11 @@ namespace BitFn.HashingLibrary.Tests.SeededHashProvider
 			var values = fixture.Create<int[]>();
 			var expected = values.Length * sizeof(int);
 
-			var algorithm = new Mock<IAlgorithm<int>>(MockBehavior.Strict);
+			var algorithm = new Mock<IHashAlgorithm<int>>(MockBehavior.Strict);
 			algorithm.Setup(m => m.ComputeHash(It.Is<byte[]>(b => b != null && b.Length == expected)))
 				.Returns(() => default(int))
 				.Verifiable();
-			var provider = new SeededHashProvider<int>(algorithm.Object);
+			var provider = new SeededHashingService<int>(algorithm.Object);
 
 			// Act
 			var actual = provider.ComputeHash(values);
@@ -136,11 +136,11 @@ namespace BitFn.HashingLibrary.Tests.SeededHashProvider
 			var values = fixture.Create<int[]>();
 			var expected = fixture.Create<int>();
 
-			var algorithm = new Mock<IAlgorithm<int>>(MockBehavior.Strict);
+			var algorithm = new Mock<IHashAlgorithm<int>>(MockBehavior.Strict);
 			algorithm.Setup(m => m.ComputeHash(It.IsNotNull<byte[]>()))
 				.Returns(() => expected)
 				.Verifiable();
-			var provider = new SeededHashProvider<int>(algorithm.Object);
+			var provider = new SeededHashingService<int>(algorithm.Object);
 
 			// Act
 			var actual = provider.ComputeHash(values);
@@ -159,11 +159,11 @@ namespace BitFn.HashingLibrary.Tests.SeededHashProvider
 			var values = fixture.Create<string[]>();
 			var expected = values.Sum(s => s.Length) * sizeof(char);
 
-			var algorithm = new Mock<IAlgorithm<int>>(MockBehavior.Strict);
+			var algorithm = new Mock<IHashAlgorithm<int>>(MockBehavior.Strict);
 			algorithm.Setup(m => m.ComputeHash(It.Is<byte[]>(b => b != null && b.Length == expected)))
 				.Returns(() => default(int))
 				.Verifiable();
-			var provider = new SeededHashProvider<int>(algorithm.Object);
+			var provider = new SeededHashingService<int>(algorithm.Object);
 
 			// Act
 			var actual = provider.ComputeHash(values);
@@ -181,11 +181,11 @@ namespace BitFn.HashingLibrary.Tests.SeededHashProvider
 			var values = fixture.Create<string[]>();
 			var expected = fixture.Create<int>();
 
-			var algorithm = new Mock<IAlgorithm<int>>(MockBehavior.Strict);
+			var algorithm = new Mock<IHashAlgorithm<int>>(MockBehavior.Strict);
 			algorithm.Setup(m => m.ComputeHash(It.IsNotNull<byte[]>()))
 				.Returns(() => expected)
 				.Verifiable();
-			var provider = new SeededHashProvider<int>(algorithm.Object);
+			var provider = new SeededHashingService<int>(algorithm.Object);
 
 			// Act
 			var actual = provider.ComputeHash(values);

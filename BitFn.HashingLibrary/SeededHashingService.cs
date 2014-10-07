@@ -7,14 +7,14 @@ using System.Text;
 
 namespace BitFn.HashingLibrary
 {
-	public sealed class SeededHashProvider<T> : ISeededHashProvider<T>
+	public sealed class SeededHashingService<T> : ISeededHashingService<T>
 	{
 		public ReadOnlyCollection<byte> Seed
 		{
 			get { return new ReadOnlyCollection<byte>(_seed); }
 		}
 
-		int IAlgorithm.HashSize
+		int IHashAlgorithm.HashSize
 		{
 			get { return _algorithm.HashSize; }
 		}
@@ -79,15 +79,15 @@ namespace BitFn.HashingLibrary
 			}
 		}
 
-		byte[] IAlgorithm.ComputeHash(byte[] values)
+		byte[] IHashAlgorithm.ComputeHash(byte[] values)
 		{
 			var byteValues = new byte[_seed.Length + values.Length];
 			Buffer.BlockCopy(_seed, 0, byteValues, 0, _seed.Length);
 			Buffer.BlockCopy(values, 0, byteValues, _seed.Length, values.Length);
-			return ((IAlgorithm)_algorithm).ComputeHash(byteValues);
+			return ((IHashAlgorithm)_algorithm).ComputeHash(byteValues);
 		}
 
-		public SeededHashProvider(IAlgorithm<T> algorithm)
+		public SeededHashingService(IHashAlgorithm<T> algorithm)
 		{
 			Contract.Requires(algorithm != null);
 
@@ -95,7 +95,7 @@ namespace BitFn.HashingLibrary
 			_seed = new byte[0];
 		}
 
-		public SeededHashProvider(IAlgorithm<T> algorithm, byte[] seed)
+		public SeededHashingService(IHashAlgorithm<T> algorithm, byte[] seed)
 		{
 			Contract.Requires(algorithm != null);
 			Contract.Requires(seed != null);
@@ -104,7 +104,7 @@ namespace BitFn.HashingLibrary
 			SetSeed(seed);
 		}
 
-		public SeededHashProvider(IAlgorithm<T> algorithm, params int[] seed)
+		public SeededHashingService(IHashAlgorithm<T> algorithm, params int[] seed)
 		{
 			Contract.Requires(algorithm != null);
 			Contract.Requires(seed != null);
@@ -113,7 +113,7 @@ namespace BitFn.HashingLibrary
 			SetSeed(seed);
 		}
 
-		public SeededHashProvider(IAlgorithm<T> algorithm, params string[] seed)
+		public SeededHashingService(IHashAlgorithm<T> algorithm, params string[] seed)
 		{
 			Contract.Requires(algorithm != null);
 			Contract.Requires(seed != null);
@@ -130,7 +130,7 @@ namespace BitFn.HashingLibrary
 			Contract.Invariant(_seed != null);
 		}
 
-		private readonly IAlgorithm<T> _algorithm;
+		private readonly IHashAlgorithm<T> _algorithm;
 		private byte[] _seed;
 	}
 }

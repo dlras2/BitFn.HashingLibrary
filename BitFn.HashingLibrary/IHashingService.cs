@@ -4,8 +4,8 @@ using System.Diagnostics.Contracts;
 
 namespace BitFn.HashingLibrary
 {
-	[ContractClass(typeof(HashProviderContract<>))]
-	public interface IHashProvider<out T> : IAlgorithm<T>
+	[ContractClass(typeof(HashingServiceContract<>))]
+	public interface IHashingService<out T> : IHashAlgorithm<T>
 	{
 		/// <summary>
 		///     Computes the hash value for the specified integer array.
@@ -25,25 +25,25 @@ namespace BitFn.HashingLibrary
 	}
 
 	[ExcludeFromCodeCoverage]
-	[ContractClassFor(typeof(IHashProvider<>))]
-	internal abstract class HashProviderContract<T> : IHashProvider<T>
+	[ContractClassFor(typeof(IHashingService<>))]
+	internal abstract class HashingServiceContract<T> : IHashingService<T>
 	{
-		int IAlgorithm.HashSize
+		int IHashAlgorithm.HashSize
 		{
 			get { throw new NotImplementedException(); }
 		}
 
-		byte[] IAlgorithm.ComputeHash(byte[] values)
+		byte[] IHashAlgorithm.ComputeHash(byte[] values)
 		{
 			throw new NotImplementedException();
 		}
 
-		T IAlgorithm<T>.ComputeHash(byte[] values)
+		T IHashAlgorithm<T>.ComputeHash(byte[] values)
 		{
 			throw new NotImplementedException();
 		}
 
-		T IHashProvider<T>.ComputeHash(params int[] values)
+		T IHashingService<T>.ComputeHash(params int[] values)
 		{
 			Contract.Requires(values != null);
 			Contract.Ensures(Contract.Result<T>() != null);
@@ -51,7 +51,7 @@ namespace BitFn.HashingLibrary
 			throw new NotImplementedException();
 		}
 
-		T IHashProvider<T>.ComputeHash(params string[] values)
+		T IHashingService<T>.ComputeHash(params string[] values)
 		{
 			Contract.Requires(values != null);
 			Contract.Ensures(Contract.Result<T>() != null);
