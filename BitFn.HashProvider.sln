@@ -9,6 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BitFn.HashProvider.Tests", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F26CCB02-0474-496F-9390-6F1F1F0B1A01}"
 	ProjectSection(SolutionItems) = preProject
+		appveyor.install.ps1 = appveyor.install.ps1
 		appveyor.yml = appveyor.yml
 		LICENSE.md = LICENSE.md
 		README.md = README.md
