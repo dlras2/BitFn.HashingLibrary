@@ -13,7 +13,7 @@
 		<description>$description$</description>
 		<releaseNotes>$releaseNotes$</releaseNotes>
 		<copyright>Copyright 2014</copyright>
-		<tags>Hashing Cryptography ProceduralGeneration</tags>
+		<tags>Hashing Cryptography ProceduralGeneration MurmurHash2 MurmurHash3</tags>
 		<references>
 			<reference file="$title$.dll" />
 		</references>
